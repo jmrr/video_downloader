@@ -41,13 +41,12 @@ for line in titles_file:
         video_save_path = os.path.join(save_path, '{:02d}'.format(video_counter) +
                                        ' [' + title_str[0] + '] ' + ' '.join(title_str[1:]) + '.mp4')
         video_counter += 1
+        url = videos_file.readline()
         if os.path.exists(video_save_path):
             print "This video has already been downloaded. Skipping..."
         else:
-            url = videos_file.readline()
             print 'Downloading file from URL: {0}...\nSaving to {1}'.format(url, video_save_path)
             call(['youtube-dl', '-o', video_save_path, url])
 
 titles_file.close()
 videos_file.close()
-
